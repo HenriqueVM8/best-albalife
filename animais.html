@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Albalife - Produtos para Animais</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+</head>
+<body>
+    <!-- Header Fixo -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <img src="imagens/folha-removebg-preview.png" alt="Folha ilustrativa" style="width: 50px;
+                height: 50px;">
+
+                <a href="index.html" class="logo" style="margin-right: auto;">Albalife</a>
+
+                <nav class="desktop-nav">
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="animais.html" class="active">Animais</a></li>
+                        <li><a href="doacoes.html">Doações</a></li>
+                        <li><a href="#">Sobre Nós</a></li>
+                        <li><a href="#">Contato</a></li>
+                    </ul>
+                </nav>
+                <button class="mobile-menu-btn" onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            
+            <!-- Menu Mobile -->
+            <nav class="mobile-nav" id="mobileNav">
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="index.html#produtos">Produtos</a></li>
+                    <li><a href="animais.html" class="active">Animais</a></li>
+                    <li><a href="doacoes.html">Doações</a></li>
+                    <li><a href="#">Sobre Nós</a></li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>Produtos Sustentáveis para Animais</h1>
+                        <p>Cuide do seu pet com produtos ecológicos que respeitam o meio ambiente e a saúde animal.</p>
+                        <div class="hero-buttons">
+                            <a href="#produtos-animais" class="btn btn-white">Ver Produtos</a>
+                            <a href="doacoes.html" class="btn btn-outline">Apoiar Causas Animais</a>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <img src="https://placehold.co/600x400/green/white?text=Produtos+para+Animais" alt="Produtos para Animais">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Admin Panel -->
+        <section class="admin-panel">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Gerenciar Produtos para Animais</h2>
+                    <p>Adicione ou remova produtos para animais na sua loja.</p>
+                </div>
+
+                <div class="admin-form">
+                    <h3>Adicionar Novo Produto para Animais</h3>
+                    <form id="addAnimalProductForm">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="animalProductName">Nome do Produto</label>
+                                <input type="text" id="animalProductName" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="animalProductPrice">Preço (€)</label>
+                                <input type="number" id="animalProductPrice" min="0" step="0.01" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="animalProductDescription">Descrição</label>
+                            <textarea id="animalProductDescription" required></textarea>
+                        </div>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="animalProductImage">URL da Imagem</label>
+                                <input type="text" id="animalProductImage" value="https://placehold.co/300x200/green/white?text=Pet">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="animalProductCategory">Categoria</label>
+                                <select id="animalProductCategory" required>
+                                    <option value="cachorro">Cachorro</option>
+                                    <option value="gato">Gato</option>
+                                    <option value="passaro">Pássaro</option>
+                                    <option value="peixe">Peixe</option>
+                                    <option value="outros">Outros Animais</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Adicionar Produto</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Products -->
+        <section class="products" id="produtos-animais">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Produtos para Animais em Destaque</h2>
+                    <p>Conheça nossa linha de produtos sustentáveis para o bem-estar do seu pet e do meio ambiente.</p>
+                </div>
+
+                <div class="category-filter">
+                    <button class="btn btn-outline category-btn active" data-category="todos">Todos</button>
+                    <button class="btn btn-outline category-btn" data-category="cachorro">Cachorros</button>
+                    <button class="btn btn-outline category-btn" data-category="gato">Gatos</button>
+                    <button class="btn btn-outline category-btn" data-category="passaro">Pássaros</button>
+                    <button class="btn btn-outline category-btn" data-category="peixe">Peixes</button>
+                    <button class="btn btn-outline category-btn" data-category="outros">Outros</button>
+                </div>
+
+                <div class="product-grid" id="animalProductGrid">
+                    <!-- Os produtos serão inseridos aqui pelo JavaScript -->
+                </div>
+
+                <div class="text-center">
+                    <a href="#" class="btn btn-primary">Ver Todos os Produtos →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us -->
+        <section class="features">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Por Que Escolher Produtos Sustentáveis para Pets?</h2>
+                    <p>Nossos produtos para animais são desenvolvidos pensando no bem-estar do seu pet e na preservação do meio ambiente.</p>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🌿</div>
+                        <h3>Materiais Naturais</h3>
+                        <p>Utilizamos materiais naturais e biodegradáveis que não prejudicam o meio ambiente.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🐾</div>
+                        <h3>Bem-estar Animal</h3>
+                        <p>Produtos desenvolvidos para proporcionar conforto e saúde para o seu pet.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">♻️</div>
+                        <h3>Embalagens Recicláveis</h3>
+                        <p>Todas as nossas embalagens são recicláveis ou biodegradáveis, reduzindo o impacto ambiental.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Animal Adoption Section -->
+        <section class="adoption">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Adoção Responsável</h2>
+                    <p>Além de produtos sustentáveis, apoiamos a adoção responsável de animais. Conheça alguns dos nossos parceiros.</p>
+                </div>
+
+                <div class="adoption-partners">
+                    <div class="partner-card">
+                        <img src="https://placehold.co/300x200/green/white?text=ONG+Animais" alt="ONG Parceira">
+                        <h3>Abrigo Feliz</h3>
+                        <p>ONG dedicada ao resgate e adoção de animais abandonados.</p>
+                        <a href="#" class="btn btn-primary">Conhecer</a>
+                    </div>
+                    
+                    <div class="partner-card">
+                        <img src="https://placehold.co/300x200/green/white?text=Projeto+Adoção" alt="Projeto de Adoção">
+                        <h3>Projeto Patinhas</h3>
+                        <p>Iniciativa que promove feiras de adoção e conscientização sobre posse responsável.</p>
+                        <a href="#" class="btn btn-primary">Conhecer</a>
+                    </div>
+                    
+                    <div class="partner-card">
+                        <img src="https://placehold.co/300x200/green/white?text=Clínica+Vet" alt="Clínica Veterinária">
+                        <h3>Clínica Vida Animal</h3>
+                        <p>Clínica veterinária parceira que oferece descontos para animais adotados.</p>
+                        <a href="#" class="btn btn-primary">Conhecer</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="cta">
+            <div class="container">
+                <h2>Cuide do Seu Pet de Forma Sustentável</h2>
+                <p>Faça a diferença na vida do seu animal de estimação e no meio ambiente com produtos ecológicos de qualidade.</p>
+                <div class="cta-buttons">
+                    <a href="#produtos-animais" class="btn btn-white">Comprar Agora</a>
+                    <a href="doacoes.html" class="btn btn-outline-white">Apoiar Causas Animais</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; <span id="currentYear"></span> Albalife. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Funções de navegação
+        function toggleMenu() {
+            const mobileNav = document.getElementById('mobileNav');
+            mobileNav.classList.toggle('active');
+        }
+
+        // Fechar menu ao clicar em um link
+        document.querySelectorAll('.mobile-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobileNav').classList.remove('active');
+            });
+        });
+
+        // Atualizar ano no footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Sistema de gerenciamento de produtos para animais
+        class AnimalProductManager {
+            constructor() {
+                this.products = JSON.parse(localStorage.getItem('albalife_animal_products')) || [];
+                this.productGrid = document.getElementById('animalProductGrid');
+                this.addProductForm = document.getElementById('addAnimalProductForm');
+                this.categoryButtons = document.querySelectorAll('.category-btn');
+                this.currentCategory = 'todos';
+                
+                // Se não houver produtos salvos, adicionar alguns produtos padrão
+                if (this.products.length === 0) {
+                    this.addDefaultProducts();
+                }
+                
+                this.renderProducts();
+                this.setupEventListeners();
+            }
+            
+            addDefaultProducts() {
+                const defaultProducts = [
+                    {
+                        id: 1,
+                        name: 'Cama Ecológica para Cães',
+                        price: 129.90,
+                        description: 'Cama confortável feita com materiais reciclados e tecido orgânico.',
+                        image: 'https://placehold.co/300x200/green/white?text=Cama+Pet',
+                        category: 'cachorro'
+                    },
+                    {
+                        id: 2,
+                        name: 'Arranhador Sustentável',
+                        price: 89.90,
+                        description: 'Arranhador para gatos feito com papelão reciclado e sisal natural.',
+                        image: 'https://placehold.co/300x200/green/white?text=Arranhador',
+                        category: 'gato'
+                    },
+                    {
+                        id: 3,
+                        name: 'Comedouro de Bambu',
+                        price: 59.90,
+                        description: 'Comedouro durável feito de bambu, material sustentável e resistente.',
+                        image: 'https://placehold.co/300x200/green/white?text=Comedouro',
+                        category: 'cachorro'
+                    },
+                    {
+                        id: 4,
+                        name: 'Brinquedo Natural para Aves',
+                        price: 45.90,
+                        description: 'Brinquedo para pássaros feito com fibras e madeiras naturais.',
+                        image: 'https://placehold.co/300x200/green/white?text=Brinquedo+Ave',
+                        category: 'passaro'
+                    },
+                    {
+                        id: 5,
+                        name: 'Areia Biodegradável',
+                        price: 39.90,
+                        description: 'Areia sanitária biodegradável para gatos, feita de materiais naturais.',
+                        image: 'https://placehold.co/300x200/green/white?text=Areia+Gato',
+                        category: 'gato'
+                    },
+                    {
+                        id: 6,
+                        name: 'Decoração Aquário Sustentável',
+                        price: 79.90,
+                        description: 'Decorações para aquário feitas com materiais naturais e não tóxicos.',
+                        image: 'https://placehold.co/300x200/green/white?text=Aquário',
+                        category: 'peixe'
+                    }
+                ];
+                
+                this.products = defaultProducts;
+                this.saveProducts();
+            }
+            
+            setupEventListeners() {
+                // Adicionar produto
+                this.addProductForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.addProduct();
+                });
+                
+                // Remover produto (delegação de eventos)
+                this.productGrid.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('remove-product')) {
+                        const productId = parseInt(e.target.dataset.id);
+                        this.removeProduct(productId);
+                    }
+                });
+                
+                // Filtrar por categoria
+                this.categoryButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        this.categoryButtons.forEach(btn => btn.classList.remove('active'));
+                        button.classList.add('active');
+                        this.currentCategory = button.dataset.category;
+                        this.renderProducts();
+                    });
+                });
+            }
+            
+            addProduct() {
+                const name = document.getElementById('animalProductName').value;
+                const price = parseFloat(document.getElementById('animalProductPrice').value);
+                const description = document.getElementById('animalProductDescription').value;
+                const image = document.getElementById('animalProductImage').value;
+                const category = document.getElementById('animalProductCategory').value;
+                
+                const newProduct = {
+                    id: Date.now(), // Usar timestamp como ID único
+                    name,
+                    price,
+                    description,
+                    image,
+                    category
+                };
+                
+                this.products.push(newProduct);
+                this.saveProducts();
+                this.renderProducts();
+                
+                // Limpar formulário
+                this.addProductForm.reset();
+                
+                // Feedback visual
+                alert('Produto para animais adicionado com sucesso!');
+            }
+            
+            removeProduct(id) {
+                if (confirm('Tem certeza que deseja remover este produto?')) {
+                    this.products = this.products.filter(product => product.id !== id);
+                    this.saveProducts();
+                    this.renderProducts();
+                }
+            }
+            
+            saveProducts() {
+                localStorage.setItem('albalife_animal_products', JSON.stringify(this.products));
+            }
+            
+            renderProducts() {
+                this.productGrid.innerHTML = '';
+                
+                // Filtrar produtos pela categoria selecionada
+                const filteredProducts = this.currentCategory === 'todos' 
+                    ? this.products 
+                    : this.products.filter(product => product.category === this.currentCategory);
+                
+                filteredProducts.forEach(product => {
+                    const productCard = document.createElement('div');
+                    productCard.className = 'product-card';
+                    
+                    // Criar badge para categoria
+                    const categoryName = this.getCategoryName(product.category);
+                    
+                    productCard.innerHTML = `
+                        <div class="product-image">
+                            <img src="${product.image}" alt="${product.name}">
+                            <span class="category-badge">${categoryName}</span>
+                        </div>
+                        <div class="product-info">
+                            <h3>${product.name}</h3>
+                            <p>${product.description}</p>
+                            <div class="product-price">${product.price.toFixed(2)} €</div>
+                            <div class="product-actions">
+                                <button class="btn btn-primary">Comprar</button>
+                                <button class="btn btn-icon remove-product" data-id="${product.id}">🗑️</button>
+                            </div>
+                        </div>
+                    `;
+                    
+                    this.productGrid.appendChild(productCard);
+                });
+                
+                // Mensagem se não houver produtos
+                if (filteredProducts.length === 0) {
+                    this.productGrid.innerHTML = '<p class="no-items">Nenhum produto encontrado nesta categoria. Adicione produtos acima.</p>';
+                }
+            }
+            
+            getCategoryName(category) {
+                const categories = {
+                    'cachorro': 'Cachorro',
+                    'gato': 'Gato',
+                    'passaro': 'Pássaro',
+                    'peixe': 'Peixe',
+                    'outros': 'Outros Animais'
+                };
+                
+                return categories[category] || 'Geral';
+            }
+        }
+        
+        // Inicializar o gerenciador de produtos quando a página carregar
+        document.addEventListener('DOMContentLoaded', () => {
+            new AnimalProductManager();
+        });
+    </script>
+
+    <style>
+        /* Estilos específicos para a página de animais */
+        .category-filter {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+        
+        .category-btn {
+            background-color: white;
+            color: #2e7d32;
+            border: 1px solid #2e7d32;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+        
+        .category-btn.active {
+            background-color: #2e7d32;
+            color: white;
+        }
+        
+        .category-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(46, 125, 50, 0.8);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .product-image {
+            position: relative;
+        }
+        
+        .adoption-partners {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .partner-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+            padding-bottom: 20px;
+        }
+        
+        .partner-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .partner-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+        
+        .partner-card h3 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+            padding: 0 15px;
+        }
+        
+        .partner-card p {
+            color: #666;
+            margin-bottom: 20px;
+            padding: 0 15px;
+            font-size: 14px;
+        }
+        
+        .adoption {
+            padding: 80px 0;
+            background-color: #f5f5f5;
+        }
+        
+        @media (max-width: 768px) {
+            .category-filter {
+                flex-direction: row;
+                overflow-x: auto;
+                padding-bottom: 10px;
+                justify-content: flex-start;
+            }
+            
+            .adoption-partners {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</body>
+</html>

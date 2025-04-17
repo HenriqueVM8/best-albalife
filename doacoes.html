@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Albalife - Doações</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+</head>
+<body>
+    <!-- Header Fixo -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <img src="imagens/folha-removebg-preview.png" alt="Folha ilustrativa" style="width: 50px;
+                height: 50px;">
+
+                <a href="index.html" class="logo" style="margin-right: auto;">Albalife</a>
+
+                <nav class="desktop-nav">
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="animais.html">Animais</a></li>
+                        <li><a href="doacoes.html" class="active">Doações</a></li>
+                        <li><a href="#">Sobre Nós</a></li>
+                        <li><a href="#">Contato</a></li>
+                    </ul>
+                </nav>
+                <button class="mobile-menu-btn" onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            
+            <!-- Menu Mobile -->
+            <nav class="mobile-nav" id="mobileNav">
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="index.html#produtos">Produtos</a></li>
+                    <li><a href="animais.html">Animais</a></li>
+                    <li><a href="doacoes.html" class="active">Doações</a></li>
+                    <li><a href="#">Sobre Nós</a></li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero hero-small">
+            <div class="container">
+                <div class="hero-text text-center">
+                    <h1>Faça uma Doação</h1>
+                    <p>Sua contribuição ajuda a financiar projetos ambientais e sociais que fazem a diferença em comunidades por todo o país.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Donation Items Section -->
+        <section class="donation-items">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Itens para Doação</h2>
+                    <p>Além de contribuições financeiras, você também pode doar ou solicitar itens específicos para projetos.</p>
+                </div>
+
+                <div class="admin-form">
+                    <h3>Adicionar Item para Doação</h3>
+                    <form id="addDonationItemForm">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="itemName">Nome do Item</label>
+                                <input type="text" id="itemName" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="itemCategory">Categoria</label>
+                                <select id="itemCategory" required>
+                                    <option value="roupas">Roupas</option>
+                                    <option value="alimentos">Alimentos</option>
+                                    <option value="higiene">Produtos de Higiene</option>
+                                    <option value="brinquedos">Brinquedos</option>
+                                    <option value="livros">Livros</option>
+                                    <option value="moveis">Móveis</option>
+                                    <option value="eletronicos">Eletrônicos</option>
+                                    <option value="outros">Outros</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="itemDescription">Descrição</label>
+                            <textarea id="itemDescription" required></textarea>
+                        </div>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="itemImage">URL da Imagem</label>
+                                <input type="text" id="itemImage" value="https://placehold.co/300x200/green/white?text=Item">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="itemCondition">Estado de Conservação</label>
+                                <select id="itemCondition" required>
+                                    <option value="novo">Novo</option>
+                                    <option value="seminovo">Seminovo</option>
+                                    <option value="usado">Usado</option>
+                                    <option value="precisareparo">Precisa de Reparo</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="itemContact">Contato para Doação</label>
+                            <input type="text" id="itemContact" placeholder="Nome e telefone/email" required>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Adicionar Item</button>
+                    </form>
+                </div>
+
+                <div class="donation-items-grid" id="donationItemsGrid">
+                    <!-- Os itens para doação serão inseridos aqui pelo JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Admin Panel -->
+        <section class="admin-panel">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Gerenciar Projetos de Doação</h2>
+                    <p>Adicione ou remova projetos para receber doações.</p>
+                </div>
+
+                <div class="admin-form">
+                    <h3>Adicionar Novo Projeto</h3>
+                    <form id="addProjectForm">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="projectName">Nome do Projeto</label>
+                                <input type="text" id="projectName" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="projectGoal">Meta (€)</label>
+                                <input type="number" id="projectGoal" min="0" step="0.01" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="projectDescription">Descrição</label>
+                            <textarea id="projectDescription" required></textarea>
+                        </div>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="projectImage">URL da Imagem</label>
+                                <input type="text" id="projectImage" value="https://placehold.co/300x200/green/white?text=Projeto">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="projectRaised">Valor Arrecadado (€)</label>
+                                <input type="number" id="projectRaised" min="0" step="0.01" value="0">
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Adicionar Projeto</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="projects">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Projetos que Apoiamos</h2>
+                    <p>Conheça os projetos que estão transformando vidas e preservando o meio ambiente com a ajuda de pessoas como você.</p>
+                </div>
+
+                <div class="project-grid" id="projectGrid">
+                    <!-- Os projetos serão inseridos aqui pelo JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Donation Form -->
+        <section class="donation-form">
+            <div class="container">
+                <div class="form-container">
+                    <h2>Faça sua Doação</h2>
+                    
+                    <form id="donationForm">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="name">Nome Completo</label>
+                                <input type="text" id="name" placeholder="Seu nome completo" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">E-mail</label>
+                                <input type="email" id="email" placeholder="seu@email.com" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone">Telefone</label>
+                                <input type="tel" id="phone" placeholder="(000) 000-000-000">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="cpf">NIF (Contribuinte)</label>
+                                <input type="text" id="cpf" placeholder="000000000">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Valor da Doação</label>
+                            <div class="radio-group">
+                                <div class="radio-option">
+                                    <input type="radio" id="value20" name="donation-value" value="20">
+                                    <label for="value20">20,00 €</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="value50" name="donation-value" value="50" checked>
+                                    <label for="value50">50,00 €</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="value100" name="donation-value" value="100">
+                                    <label for="value100">100,00 €</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="valueOther" name="donation-value" value="other">
+                                    <label for="valueOther">Outro valor</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="selectedProject">Projeto (Opcional)</label>
+                            <select id="selectedProject">
+                                <option value="">Selecione um projeto específico (opcional)</option>
+                                <!-- Opções serão preenchidas pelo JavaScript -->
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Mensagem (Opcional)</label>
+                            <textarea id="message" placeholder="Deixe uma mensagem para os organizadores do projeto..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-full">Finalizar Doação</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Impact Section -->
+        <section class="impact">
+            <div class="container">
+                <div class="section-header">
+                    <h2>O Impacto da Sua Doação</h2>
+                    <p>Veja como sua contribuição pode fazer a diferença em nossos projetos e nas comunidades que atendemos.</p>
+                </div>
+
+                <div class="impact-grid">
+                    <div class="impact-card">
+                        <div class="impact-value">20 €</div>
+                        <p>Planta 10 árvores nativas em áreas de reflorestamento</p>
+                    </div>
+
+                    <div class="impact-card">
+                        <div class="impact-value">50 €</div>
+                        <p>Fornece água potável para uma família por um mês</p>
+                    </div>
+
+                    <div class="impact-card">
+                        <div class="impact-value">100 €</div>
+                        <p>Financia material educativo para 20 crianças em escolas públicas</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; <span id="currentYear"></span> Albalife. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Funções de navegação
+        function toggleMenu() {
+            const mobileNav = document.getElementById('mobileNav');
+            mobileNav.classList.toggle('active');
+        }
+
+        // Fechar menu ao clicar em um link
+        document.querySelectorAll('.mobile-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobileNav').classList.remove('active');
+            });
+        });
+
+        // Atualizar ano no footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Sistema de gerenciamento de projetos de doação
+        class ProjectManager {
+            constructor() {
+                this.projects = JSON.parse(localStorage.getItem('albalife_projects')) || [];
+                this.projectGrid = document.getElementById('projectGrid');
+                this.addProjectForm = document.getElementById('addProjectForm');
+                this.donationForm = document.getElementById('donationForm');
+                this.projectSelect = document.getElementById('selectedProject');
+                
+                // Se não houver projetos salvos, adicionar alguns projetos padrão
+                if (this.projects.length === 0) {
+                    this.addDefaultProjects();
+                }
+                
+                this.renderProjects();
+                this.updateProjectSelect();
+                this.setupEventListeners();
+            }
+            
+            addDefaultProjects() {
+                const defaultProjects = [
+                    {
+                        id: 1,
+                        name: 'Reflorestamento Amazônico',
+                        description: 'Ajude a reflorestar áreas degradadas da Amazônia com espécies nativas.',
+                        image: 'https://placehold.co/300x200/green/white?text=Reflorestamento',
+                        goal: 50000,
+                        raised: 32450
+                    },
+                    {
+                        id: 2,
+                        name: 'Água Limpa para Todos',
+                        description: 'Projeto que leva água potável para comunidades sem acesso a saneamento básico.',
+                        image: 'https://placehold.co/300x200/green/white?text=Água',
+                        goal: 35000,
+                        raised: 21780
+                    },
+                    {
+                        id: 3,
+                        name: 'Educação Ambiental',
+                        description: 'Programa educacional que ensina crianças sobre sustentabilidade e preservação ambiental.',
+                        image: 'https://placehold.co/300x200/green/white?text=Educação',
+                        goal: 25000,
+                        raised: 18320
+                    },
+                    {
+                        id: 4,
+                        name: 'Abrigo para Animais',
+                        description: 'Projeto que resgata e cuida de animais abandonados até encontrarem um novo lar.',
+                        image: 'https://placehold.co/300x200/green/white?text=Animais',
+                        goal: 30000,
+                        raised: 15600
+                    }
+                ];
+                
+                this.projects = defaultProjects;
+                this.saveProjects();
+            }
+            
+            setupEventListeners() {
+                // Adicionar projeto
+                this.addProjectForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.addProject();
+                });
+                
+                // Remover projeto (delegação de eventos)
+                this.projectGrid.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('remove-project')) {
+                        const projectId = parseInt(e.target.dataset.id);
+                        this.removeProject(projectId);
+                    }
+                });
+                
+                // Processar doação
+                this.donationForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.processDonation();
+                });
+            }
+            
+            addProject() {
+                const name = document.getElementById('projectName').value;
+                const goal = parseFloat(document.getElementById('projectGoal').value);
+                const description = document.getElementById('projectDescription').value;
+                const image = document.getElementById('projectImage').value;
+                const raised = parseFloat(document.getElementById('projectRaised').value) || 0;
+                
+                const newProject = {
+                    id: Date.now(), // Usar timestamp como ID único
+                    name,
+                    description,
+                    image,
+                    goal,
+                    raised
+                };
+                
+                this.projects.push(newProject);
+                this.saveProjects();
+                this.renderProjects();
+                this.updateProjectSelect();
+                
+                // Limpar formulário
+                this.addProjectForm.reset();
+                
+                // Feedback visual
+                alert('Projeto adicionado com sucesso!');
+            }
+            
+            removeProject(id) {
+                if (confirm('Tem certeza que deseja remover este projeto?')) {
+                    this.projects = this.projects.filter(project => project.id !== id);
+                    this.saveProjects();
+                    this.renderProjects();
+                    this.updateProjectSelect();
+                }
+            }
+            
+            processDonation() {
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                
+                // Obter valor da doação
+                let donationValue = 0;
+                const selectedValue = document.querySelector('input[name="donation-value"]:checked').value;
+                
+                if (selectedValue === 'other') {
+                    const customValue = prompt('Digite o valor da doação:');
+                    donationValue = parseFloat(customValue) || 0;
+                } else {
+                    donationValue = parseFloat(selectedValue);
+                }
+                
+                // Verificar se um projeto específico foi selecionado
+                const selectedProjectId = this.projectSelect.value;
+                
+                if (selectedProjectId) {
+                    // Atualizar o valor arrecadado do projeto
+                    const projectIndex = this.projects.findIndex(p => p.id === parseInt(selectedProjectId));
+                    
+                    if (projectIndex !== -1) {
+                        this.projects[projectIndex].raised += donationValue;
+                        this.saveProjects();
+                        this.renderProjects();
+                    }
+                }
+                
+                // Limpar formulário
+                this.donationForm.reset();
+                
+                // Feedback visual
+                alert(`Obrigado, ${name}! Sua doação de ${donationValue.toFixed(2)} € foi processada com sucesso.`);
+            }
+            
+            saveProjects() {
+                localStorage.setItem('albalife_projects', JSON.stringify(this.projects));
+            }
+            
+            updateProjectSelect() {
+                // Limpar opções existentes, exceto a primeira
+                while (this.projectSelect.options.length > 1) {
+                    this.projectSelect.remove(1);
+                }
+                
+                // Adicionar projetos como opções
+                this.projects.forEach(project => {
+                    const option = document.createElement('option');
+                    option.value = project.id;
+                    option.textContent = project.name;
+                    this.projectSelect.appendChild(option);
+                });
+            }
+            
+            renderProjects() {
+                this.projectGrid.innerHTML = '';
+                
+                this.projects.forEach(project => {
+                    // Calcular porcentagem arrecadada
+                    const percentage = (project.raised / project.goal) * 100;
+                    
+                    const projectCard = document.createElement('div');
+                    projectCard.className = 'project-card';
+                    
+                    projectCard.innerHTML = `
+                        <div class="project-image">
+                            <img src="${project.image}" alt="${project.name}">
+                        </div>
+                        <div class="project-info">
+                            <h3>${project.name}</h3>
+                            <p>${project.description}</p>
+                            <div class="project-progress">
+                                <div class="progress-info">
+                                    <span>Arrecadado: ${project.raised.toFixed(2)} €</span>
+                                    <span>Meta: ${project.goal.toFixed(2)} €</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: ${percentage}%"></div>
+                                </div>
+                            </div>
+                            <div class="project-actions">
+                                <button class="btn btn-primary btn-full">Apoiar este Projeto</button>
+                                <button class="btn btn-icon remove-project" data-id="${project.id}">🗑️</button>
+                            </div>
+                        </div>
+                    `;
+                    
+                    this.projectGrid.appendChild(projectCard);
+                });
+                
+                // Mensagem se não houver projetos
+                if (this.projects.length === 0) {
+                    this.projectGrid.innerHTML = '<p class="no-items">Nenhum projeto cadastrado. Adicione projetos acima.</p>';
+                }
+            }
+        }
+        
+        // Sistema de gerenciamento de itens para doação
+        class DonationItemManager {
+            constructor() {
+                this.items = JSON.parse(localStorage.getItem('albalife_donation_items')) || [];
+                this.itemsGrid = document.getElementById('donationItemsGrid');
+                this.addItemForm = document.getElementById('addDonationItemForm');
+                
+                // Se não houver itens salvos, adicionar alguns itens padrão
+                if (this.items.length === 0) {
+                    this.addDefaultItems();
+                }
+                
+                this.renderItems();
+                this.setupEventListeners();
+            }
+            
+            addDefaultItems() {
+                const defaultItems = [
+                    {
+                        id: 1,
+                        name: 'Cobertores',
+                        description: 'Cobertores em bom estado para doação a pessoas em situação de rua.',
+                        image: 'https://placehold.co/300x200/green/white?text=Cobertores',
+                        category: 'roupas',
+                        condition: 'usado',
+                        contact: 'Centro Comunitário - (351+) 912-788-883'
+                    },
+                    {
+                        id: 2,
+                        name: 'Ração para Cães',
+                        description: 'Ração para cães adultos para doação a abrigos de animais.',
+                        image: 'https://placehold.co/300x200/green/white?text=Ração',
+                        category: 'alimentos',
+                        condition: 'novo',
+                        contact: 'Abrigo Feliz - (11) 88888-8888'
+                    },
+                    {
+                        id: 3,
+                        name: 'Livros Infantis',
+                        description: 'Livros infantis para doação a bibliotecas comunitárias.',
+                        image: 'https://placehold.co/300x200/green/white?text=Livros',
+                        category: 'livros',
+                        condition: 'seminovo',
+                        contact: 'Biblioteca Comunitária - (11) 77777-7777'
+                    }
+                ];
+                
+                this.items = defaultItems;
+                this.saveItems();
+            }
+            
+            setupEventListeners() {
+                // Adicionar item
+                this.addItemForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.addItem();
+                });
+                
+                // Remover item (delegação de eventos)
+                this.itemsGrid.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('remove-item')) {
+                        const itemId = parseInt(e.target.dataset.id);
+                        this.removeItem(itemId);
+                    }
+                });
+                
+                // Solicitar item (delegação de eventos)
+                this.itemsGrid.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('request-item')) {
+                        const itemId = parseInt(e.target.dataset.id);
+                        this.requestItem(itemId);
+                    }
+                });
+            }
+            
+            addItem() {
+                const name = document.getElementById('itemName').value;
+                const description = document.getElementById('itemDescription').value;
+                const image = document.getElementById('itemImage').value;
+                const category = document.getElementById('itemCategory').value;
+                const condition = document.getElementById('itemCondition').value;
+                const contact = document.getElementById('itemContact').value;
+                
+                const newItem = {
+                    id: Date.now(), // Usar timestamp como ID único
+                    name,
+                    description,
+                    image,
+                    category,
+                    condition,
+                    contact
+                };
+                
+                this.items.push(newItem);
+                this.saveItems();
+                this.renderItems();
+                
+                // Limpar formulário
+                this.addItemForm.reset();
+                
+                // Feedback visual
+                alert('Item para doação adicionado com sucesso!');
+            }
+            
+            removeItem(id) {
+                if (confirm('Tem certeza que deseja remover este item?')) {
+                    this.items = this.items.filter(item => item.id !== id);
+                    this.saveItems();
+                    this.renderItems();
+                }
+            }
+            
+            requestItem(id) {
+                const item = this.items.find(item => item.id === id);
+                if (item) {
+                    const name = prompt('Digite seu nome:');
+                    const contact = prompt('Digite seu contato (telefone ou email):');
+                    
+                    if (name && contact) {
+                        alert(`Solicitação enviada com sucesso!\n\nVocê solicitou: ${item.name}\nEntre em contato com: ${item.contact}\n\nSuas informações:\nNome: ${name}\nContato: ${contact}`);
+                    }
+                }
+            }
+            
+            saveItems() {
+                localStorage.setItem('albalife_donation_items', JSON.stringify(this.items));
+            }
+            
+            getCategoryName(category) {
+                const categories = {
+                    'roupas': 'Roupas',
+                    'alimentos': 'Alimentos',
+                    'higiene': 'Produtos de Higiene',
+                    'brinquedos': 'Brinquedos',
+                    'livros': 'Livros',
+                    'moveis': 'Móveis',
+                    'eletronicos': 'Eletrônicos',
+                    'outros': 'Outros'
+                };
+                
+                return categories[category] || 'Outros';
+            }
+            
+            getConditionName(condition) {
+                const conditions = {
+                    'novo': 'Novo',
+                    'seminovo': 'Seminovo',
+                    'usado': 'Usado',
+                    'precisareparo': 'Precisa de Reparo'
+                };
+                
+                return conditions[condition] || 'Usado';
+            }
+            
+            renderItems() {
+                this.itemsGrid.innerHTML = '';
+                
+                this.items.forEach(item => {
+                    const itemCard = document.createElement('div');
+                    itemCard.className = 'donation-item-card';
+                    
+                    const categoryName = this.getCategoryName(item.category);
+                    const conditionName = this.getConditionName(item.condition);
+                    
+                    itemCard.innerHTML = `
+                        <div class="item-image">
+                            <img src="${item.image}" alt="${item.name}">
+                            <span class="category-badge">${categoryName}</span>
+                        </div>
+                        <div class="item-info">
+                            <h3>${item.name}</h3>
+                            <p>${item.description}</p>
+                            <div class="item-details">
+                                <span class="condition-badge ${item.condition}">${conditionName}</span>
+                                <span class="contact-info">Contato: ${item.contact}</span>
+                            </div>
+                            <div class="item-actions">
+                                <button class="btn btn-primary request-item" data-id="${item.id}">Solicitar Item</button>
+                                <button class="btn btn-icon remove-item" data-id="${item.id}">🗑️</button>
+                            </div>
+                        </div>
+                    `;
+                    
+                    this.itemsGrid.appendChild(itemCard);
+                });
+                
+                // Mensagem se não houver itens
+                if (this.items.length === 0) {
+                    this.itemsGrid.innerHTML = '<p class="no-items">Nenhum item para doação cadastrado. Adicione itens acima.</p>';
+                }
+            }
+        }
+        
+        // Inicializar os gerenciadores quando a página carregar
+        document.addEventListener('DOMContentLoaded', () => {
+            new ProjectManager();
+            new DonationItemManager();
+        });
+    </script>
+
+    <style>
+        /* Estilos para itens de doação */
+        .donation-items {
+            padding: 80px 0;
+            background-color: #f5f5f5;
+        }
+        
+        .donation-items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .donation-item-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .donation-item-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .item-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .item-info {
+            padding: 20px;
+        }
+        
+        .item-info h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: #2e7d32;
+        }
+        
+        .item-info p {
+            color: #666;
+            margin-bottom: 16px;
+            font-size: 14px;
+        }
+        
+        .item-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .category-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(46, 125, 50, 0.8);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .condition-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            color: white;
+        }
+        
+        .condition-badge.novo {
+            background-color: #4caf50;
+        }
+        
+        .condition-badge.seminovo {
+            background-color: #8bc34a;
+        }
+        
+        .condition-badge.usado {
+            background-color: #ff9800;
+        }
+        
+        .condition-badge.precisareparo {
+            background-color: #f44336;
+        }
+        
+        .contact-info {
+            font-size: 13px;
+            color: #666;
+        }
+        
+        .item-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        @media (max-width: 768px) {
+            .donation-items-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+</body>
+</html>
+
+<Actions>
+  <Action name="Adicionar filtro por categoria" description="Implementar filtros para os itens de doação por categoria" />
+  <Action name="Adicionar sistema de busca" description="Implementar busca para encontrar itens específicos" />
+  <Action name="Melhorar responsividade" description="Otimizar a visualização em dispositivos móveis" />
+  <Action name="Adicionar estatísticas de doações" description="Mostrar estatísticas sobre itens doados e solicitados" />
+  <Action name="Implementar sistema de mensagens" description="Adicionar sistema de mensagens entre doadores e interessados" />
+</Actions>

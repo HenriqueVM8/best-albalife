@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Albalife - Produtos Sustentáveis</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+</head>
+<body>
+    <!-- Header Fixo -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <img src="imagens/folha-removebg-preview.png" alt="Folha ilustrativa" style="width: 50px;
+                height: 50px;">
+
+                <a href="index.html" class="logo" style="margin-right: auto;">Albalife</a>
+
+                <nav class="desktop-nav">
+                    <ul>
+                        <li><a href="index.html" class="active">Início</a></li>
+                        <li><a href="animais.html">Animais</a></li>
+                        <li><a href="doacoes.html">Doações</a></li>
+                        <li><a href="#">Sobre Nós</a></li>
+                        <li><a href="#">Contato</a></li>
+                    </ul>
+                </nav>
+                <button class="mobile-menu-btn" onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            
+            <!-- Menu Mobile -->
+            <nav class="mobile-nav" id="mobileNav">
+                <ul>
+                    <li><a href="index.html" class="active">Início</a></li>
+                    <li><a href="#produtos">Produtos</a></li>
+                    <li><a href="animais.html">Animais</a></li>
+                    <li><a href="doacoes.html">Doações</a></li>
+                    <li><a href="#">Sobre Nós</a></li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>Produtos Ecológicos para um Futuro Sustentável</h1>
+                        <p>Descubra nossa linha de produtos sustentáveis que ajudam a preservar o meio ambiente.</p>
+                        <div class="hero-buttons">
+                            <a href="#produtos" class="btn btn-white">Ver Produtos</a>
+                            <a href="doacoes.html" class="btn btn-outline">Fazer Doação</a>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <img src="imagens/Teste.png" alt="Produtos Ecológicos">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Admin Panel -->
+        <section class="admin-panel">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Gerenciar Produtos</h2>
+                    <p>Adicione ou remova produtos para venda na sua loja.</p>
+                </div>
+
+                <div class="admin-form">
+                    <h3>Adicionar Novo Produto</h3>
+                    <form id="addProductForm">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="productName">Nome do Produto</label>
+                                <input type="text" id="productName" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="productPrice">Preço (€)</label>
+                                <input type="number" id="productPrice" min="0" step="0.01" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="productDescription">Descrição</label>
+                            <textarea id="productDescription" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="productImage">URL da Imagem</label>
+                            <input type="text" id="productImage" value="https://placehold.co/300x200/green/white?text=Produto">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Adicionar Produto</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Products -->
+        <section class="products" id="produtos">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Produtos em Destaque</h2>
+                    <p>Conheça nossos produtos mais vendidos, todos desenvolvidos com foco na sustentabilidade e respeito ao meio ambiente.</p>
+                </div>
+
+                <div class="product-grid" id="productGrid">
+                    <!-- Os produtos serão inseridos aqui pelo JavaScript -->
+                </div>
+
+                <div class="text-center">
+                    <a href="#" class="btn btn-primary">Ver Todos os Produtos →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us -->
+        <section class="features">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Por Que Escolher a Albalife?</h2>
+                    <p>Nosso compromisso com a sustentabilidade e qualidade nos torna a escolha ideal para quem se preocupa com o futuro do planeta.</p>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">✓</div>
+                        <h3>Produtos Sustentáveis</h3>
+                        <p>Aqui você pode dar uma segunda vida aos seus produtos, preservando o meio ambiente e ajudando pessoas de baixa renda.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">$</div>
+                        <h3>Preços Justos</h3>
+                        <p>Oferecemos produtos de qualidade a preços acessíveis, garantindo valor para nossos clientes.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">⚖</div>
+                        <h3>Impacto Social</h3>
+                        <p>Parte de nossas vendas é destinada a projetos sociais e ambientais, multiplicando o impacto positivo.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Categories -->
+        <section class="categories">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Nossas Categorias</h2>
+                    <p>Explore nossa variedade de produtos sustentáveis para diferentes necessidades.</p>
+                </div>
+
+                <div class="categories-grid">
+                    <a href="#produtos" class="category-card">
+                        <img src="https://placehold.co/400x300/green/white?text=Casa+e+Decoração" alt="Casa e Decoração">
+                        <div class="category-overlay">
+                            <h3>Casa e Decoração</h3>
+                        </div>
+                    </a>
+                    
+                    <a href="animais.html" class="category-card">
+                        <img src="https://placehold.co/400x300/green/white?text=Produtos+para+Animais" alt="Produtos para Animais">
+                        <div class="category-overlay">
+                            <h3>Produtos para Animais</h3>
+                        </div>
+                    </a>
+                    
+                    <a href="#" class="category-card">
+                        <img src="https://placehold.co/400x300/green/white?text=Higiene+e+Beleza" alt="Higiene e Beleza">
+                        <div class="category-overlay">
+                            <h3>Higiene e Beleza</h3>
+                        </div>
+                    </a>
+                    
+                    <a href="doacoes.html" class="category-card">
+                        <img src="https://placehold.co/400x300/green/white?text=Projetos+Sociais" alt="Projetos Sociais">
+                        <div class="category-overlay">
+                            <h3>Projetos Sociais</h3>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="cta">
+            <div class="container">
+                <h2>Faça a Diferença Hoje</h2>
+                <p>Junte-se a nós na missão de criar um mundo mais sustentável. Cada compra ou doação faz a diferença.</p>
+                <div class="cta-buttons">
+                    <a href="#produtos" class="btn btn-white">Comprar Agora</a>
+                    <a href="doacoes.html" class="btn btn-outline-white">Fazer Doação</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; <span id="currentYear"></span> Albalife. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Funções de navegação
+        function toggleMenu() {
+            const mobileNav = document.getElementById('mobileNav');
+            mobileNav.classList.toggle('active');
+        }
+
+        // Fechar menu ao clicar em um link
+        document.querySelectorAll('.mobile-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobileNav').classList.remove('active');
+            });
+        });
+
+        // Atualizar ano no footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Sistema de gerenciamento de produtos
+        class ProductManager {
+            constructor() {
+                this.products = JSON.parse(localStorage.getItem('albalife_products')) || [];
+                this.productGrid = document.getElementById('productGrid');
+                this.addProductForm = document.getElementById('addProductForm');
+                
+                // Se não houver produtos salvos, adicionar alguns produtos padrão
+                if (this.products.length === 0) {
+                    this.addDefaultProducts();
+                }
+                
+                this.renderProducts();
+                this.setupEventListeners();
+            }
+            
+            addDefaultProducts() {
+                const defaultProducts = [
+                    {
+                        id: 1,
+                        name: 'Garrafa Ecológica',
+                        price: 59.90,
+                        description: 'Garrafa reutilizável feita com materiais reciclados.',
+                        image: 'https://placehold.co/300x200/green/white?text=Garrafa'
+                    },
+                    {
+                        id: 2,
+                        name: 'Kit Talheres Bamboo',
+                        price: 79.90,
+                        description: 'Kit de talheres de bambu, 100% biodegradáveis.',
+                        image: 'https://placehold.co/300x200/green/white?text=Talheres'
+                    },
+                    {
+                        id: 3,
+                        name: 'Ecobag',
+                        price: 49.90,
+                        description: 'Sacola ecológica reutilizável para suas compras.',
+                        image: 'https://placehold.co/300x200/green/white?text=Ecobag'
+                    },
+                    {
+                        id: 4,
+                        name: 'Sabonete Natural',
+                        price: 29.90,
+                        description: 'Sabonete artesanal feito com ingredientes naturais.',
+                        image: 'https://placehold.co/300x200/green/white?text=Sabonete'
+                    }
+                ];
+                
+                this.products = defaultProducts;
+                this.saveProducts();
+            }
+            
+            setupEventListeners() {
+                // Adicionar produto
+                this.addProductForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.addProduct();
+                });
+                
+                // Remover produto (delegação de eventos)
+                this.productGrid.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('remove-product')) {
+                        const productId = parseInt(e.target.dataset.id);
+                        this.removeProduct(productId);
+                    }
+                });
+            }
+            
+            addProduct() {
+                const name = document.getElementById('productName').value;
+                const price = parseFloat(document.getElementById('productPrice').value);
+                const description = document.getElementById('productDescription').value;
+                const image = document.getElementById('productImage').value;
+                
+                const newProduct = {
+                    id: Date.now(), // Usar timestamp como ID único
+                    name,
+                    price,
+                    description,
+                    image
+                };
+                
+                this.products.push(newProduct);
+                this.saveProducts();
+                this.renderProducts();
+                
+                // Limpar formulário
+                this.addProductForm.reset();
+                
+                // Feedback visual
+                alert('Produto adicionado com sucesso!');
+            }
+            
+            removeProduct(id) {
+                if (confirm('Tem certeza que deseja remover este produto?')) {
+                    this.products = this.products.filter(product => product.id !== id);
+                    this.saveProducts();
+                    this.renderProducts();
+                }
+            }
+            
+            saveProducts() {
+                localStorage.setItem('albalife_products', JSON.stringify(this.products));
+            }
+            
+            renderProducts() {
+                this.productGrid.innerHTML = '';
+                
+                this.products.forEach(product => {
+                    const productCard = document.createElement('div');
+                    productCard.className = 'product-card';
+                    
+                    productCard.innerHTML = `
+                        <div class="product-image">
+                            <img src="${product.image}" alt="${product.name}">
+                        </div>
+                        <div class="product-info">
+                            <h3>${product.name}</h3>
+                            <p>${product.description}</p>
+                            <div class="product-price">${product.price.toFixed(2)} €</div>
+                            <div class="product-actions">
+                                <button class="btn btn-primary">Comprar</button>
+                                <button class="btn btn-icon remove-product" data-id="${product.id}">🗑️</button>
+                            </div>
+                        </div>
+                    `;
+                    
+                    this.productGrid.appendChild(productCard);
+                });
+                
+                // Mensagem se não houver produtos
+                if (this.products.length === 0) {
+                    this.productGrid.innerHTML = '<p class="no-items">Nenhum produto cadastrado. Adicione produtos acima.</p>';
+                }
+            }
+        }
+        
+        // Inicializar o gerenciador de produtos quando a página carregar
+        document.addEventListener('DOMContentLoaded', () => {
+            new ProductManager();
+        });
+    </script>
+
+    <style>
+        /* Estilos para as categorias */
+        .categories {
+            padding: 80px 0;
+            background-color: #f5f5f5;
+        }
+        
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .category-card {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            height: 200px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .category-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .category-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            padding: 20px;
+            color: white;
+        }
+        
+        .category-overlay h3 {
+            margin: 0;
+            font-size: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</body>
+</html>
