@@ -113,8 +113,28 @@
                             </div>
                         </div>
                         
+                        <div class="form-group">
+                            <label for="animalProductCondition">Estado do Produto</label>
+                            <select id="animalProductCondition" required>
+                                <option value="novo">Novo</option>
+                                <option value="seminovo">Seminovo</option>
+                                <option value="usado">Usado</option>
+                                <option value="precisareparo">Precisa de Reparo</option>
+                            </select>
+                        </div>
+                        
                         <button type="submit" class="btn btn-primary">Adicionar Produto</button>
                     </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Barra de Pesquisa -->
+        <section class="search-section">
+            <div class="container">
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Pesquisar produtos para animais..." class="search-input">
+                    <button id="searchButton" class="search-button">🔍</button>
                 </div>
             </div>
         </section>
@@ -252,7 +272,10 @@
                 this.productGrid = document.getElementById('animalProductGrid');
                 this.addProductForm = document.getElementById('addAnimalProductForm');
                 this.categoryButtons = document.querySelectorAll('.category-btn');
+                this.searchInput = document.getElementById('searchInput');
+                this.searchButton = document.getElementById('searchButton');
                 this.currentCategory = 'todos';
+                this.searchTerm = '';
                 
                 // Se não houver produtos salvos, adicionar alguns produtos padrão
                 if (this.products.length === 0) {
@@ -271,7 +294,8 @@
                         price: 129.90,
                         description: 'Cama confortável feita com materiais reciclados e tecido orgânico.',
                         image: 'https://placehold.co/300x200/green/white?text=Cama+Pet',
-                        category: 'cachorro'
+                        category: 'cachorro',
+                        condition: 'novo'
                     },
                     {
                         id: 2,
@@ -279,7 +303,8 @@
                         price: 89.90,
                         description: 'Arranhador para gatos feito com papelão reciclado e sisal natural.',
                         image: 'https://placehold.co/300x200/green/white?text=Arranhador',
-                        category: 'gato'
+                        category: 'gato',
+                        condition: 'novo'
                     },
                     {
                         id: 3,
@@ -287,7 +312,8 @@
                         price: 59.90,
                         description: 'Comedouro durável feito de bambu, material sustentável e resistente.',
                         image: 'https://placehold.co/300x200/green/white?text=Comedouro',
-                        category: 'cachorro'
+                        category: 'cachorro',
+                        condition: 'seminovo'
                     },
                     {
                         id: 4,
@@ -295,7 +321,8 @@
                         price: 45.90,
                         description: 'Brinquedo para pássaros feito com fibras e madeiras naturais.',
                         image: 'https://placehold.co/300x200/green/white?text=Brinquedo+Ave',
-                        category: 'passaro'
+                        category: 'passaro',
+                        condition: 'novo'
                     },
                     {
                         id: 5,
@@ -303,7 +330,8 @@
                         price: 39.90,
                         description: 'Areia sanitária biodegradável para gatos, feita de materiais naturais.',
                         image: 'https://placehold.co/300x200/green/white?text=Areia+Gato',
-                        category: 'gato'
+                        category: 'gato',
+                        condition: 'novo'
                     },
                     {
                         id: 6,
@@ -311,7 +339,8 @@
                         price: 79.90,
                         description: 'Decorações para aquário feitas com materiais naturais e não tóxicos.',
                         image: 'https://placehold.co/300x200/green/white?text=Aquário',
-                        category: 'peixe'
+                        category: 'peixe',
+                        condition: 'usado'
                     }
                 ];
                 
@@ -343,6 +372,24 @@
                         this.renderProducts();
                     });
                 });
+                
+                // Pesquisar produtos
+                this.searchButton.addEventListener('click', () => {
+                    this.searchProducts();
+                });
+                
+                // Pesquisar ao pressionar Enter
+                this.searchInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        this.searchProducts();
+                    }
+                });
+            }
+            
+            searchProducts() {
+                this.searchTerm = this.searchInput.value.toLowerCase().trim();
+                this.renderProducts();
             }
             
             addProduct() {
@@ -351,6 +398,7 @@
                 const description = document.getElementById('animalProductDescription').value;
                 const image = document.getElementById('animalProductImage').value;
                 const category = document.getElementById('animalProductCategory').value;
+                const condition = document.getElementById('animalProductCondition').value;
                 
                 const newProduct = {
                     id: Date.now(), // Usar timestamp como ID único
@@ -358,7 +406,8 @@
                     price,
                     description,
                     image,
-                    category
+                    category,
+                    condition
                 };
                 
                 this.products.push(newProduct);
@@ -384,13 +433,42 @@
                 localStorage.setItem('albalife_animal_products', JSON.stringify(this.products));
             }
             
+            getConditionName(condition) {
+                const conditions = {
+                    'novo': 'Novo',
+                    'seminovo': 'Seminovo',
+                    'usado': 'Usado',
+                    'precisareparo': 'Precisa de Reparo'
+                };
+                
+                return conditions[condition] || 'Novo';
+            }
+            
             renderProducts() {
                 this.productGrid.innerHTML = '';
                 
-                // Filtrar produtos pela categoria selecionada
-                const filteredProducts = this.currentCategory === 'todos' 
-                    ? this.products 
-                    : this.products.filter(product => product.category === this.currentCategory);
+                // Filtrar produtos pela categoria selecionada e termo de pesquisa
+                let filteredProducts = this.products;
+                
+                // Filtrar por categoria
+                if (this.currentCategory !== 'todos') {
+                    filteredProducts = filteredProducts.filter(product => product.category === this.currentCategory);
+                }
+                
+                // Filtrar por termo de pesquisa
+                if (this.searchTerm) {
+                    filteredProducts = filteredProducts.filter(product => {
+                        const categoryName = this.getCategoryName(product.category);
+                        const conditionName = this.getConditionName(product.condition || 'novo');
+                        
+                        return (
+                            product.name.toLowerCase().includes(this.searchTerm) ||
+                            product.description.toLowerCase().includes(this.searchTerm) ||
+                            categoryName.toLowerCase().includes(this.searchTerm) ||
+                            conditionName.toLowerCase().includes(this.searchTerm)
+                        );
+                    });
+                }
                 
                 filteredProducts.forEach(product => {
                     const productCard = document.createElement('div');
@@ -398,6 +476,7 @@
                     
                     // Criar badge para categoria
                     const categoryName = this.getCategoryName(product.category);
+                    const conditionName = this.getConditionName(product.condition || 'novo');
                     
                     productCard.innerHTML = `
                         <div class="product-image">
@@ -407,6 +486,9 @@
                         <div class="product-info">
                             <h3>${product.name}</h3>
                             <p>${product.description}</p>
+                            <div class="item-details">
+                                <span class="condition-badge ${product.condition || 'novo'}">${conditionName}</span>
+                            </div>
                             <div class="product-price">${product.price.toFixed(2)} €</div>
                             <div class="product-actions">
                                 <button class="btn btn-primary">Comprar</button>
@@ -420,7 +502,7 @@
                 
                 // Mensagem se não houver produtos
                 if (filteredProducts.length === 0) {
-                    this.productGrid.innerHTML = '<p class="no-items">Nenhum produto encontrado nesta categoria. Adicione produtos acima.</p>';
+                    this.productGrid.innerHTML = '<p class="no-items">Nenhum produto encontrado. Tente outra pesquisa ou categoria.</p>';
                 }
             }
             
@@ -530,6 +612,76 @@
             background-color: #f5f5f5;
         }
         
+        /* Estilos para os estados do produto */
+        .item-details {
+            display: flex;
+            margin: 10px 0;
+        }
+        
+        .condition-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            color: white;
+        }
+        
+        .condition-badge.novo {
+            background-color: #4caf50;
+        }
+        
+        .condition-badge.seminovo {
+            background-color: #8bc34a;
+        }
+        
+        .condition-badge.usado {
+            background-color: #ff9800;
+        }
+        
+        .condition-badge.precisareparo {
+            background-color: #f44336;
+        }
+        
+        /* Estilos para a seção de pesquisa */
+        .search-section {
+            padding: 30px 0;
+            background-color: #f9f9f9;
+        }
+        
+        .search-container {
+            display: flex;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 50px;
+            overflow: hidden;
+        }
+        
+        .search-input {
+            flex: 1;
+            padding: 15px 25px;
+            border: none;
+            font-size: 16px;
+            outline: none;
+            border-radius: 50px 0 0 50px;
+        }
+        
+        .search-button {
+            background-color: #2e7d32;
+            color: white;
+            border: none;
+            padding: 0 25px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s;
+            border-radius: 0 50px 50px 0;
+        }
+        
+        .search-button:hover {
+            background-color: #1b5e20;
+        }
+        
         @media (max-width: 768px) {
             .category-filter {
                 flex-direction: row;
@@ -540,6 +692,35 @@
             
             .adoption-partners {
                 grid-template-columns: 1fr;
+            }
+            
+            .search-container {
+                width: 90%;
+                margin: 0 auto;
+            }
+            
+            .search-input {
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+            
+            .search-button {
+                padding: 0 20px;
+                font-size: 16px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .search-container {
+                width: 95%;
+            }
+            
+            .search-input {
+                padding: 10px 15px;
+            }
+            
+            .search-button {
+                padding: 0 15px;
             }
         }
     </style>
