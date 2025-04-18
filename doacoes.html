@@ -37,7 +37,6 @@
             <nav class="mobile-nav" id="mobileNav">
                 <ul>
                     <li><a href="index.html">Início</a></li>
-                    <li><a href="index.html#produtos">Produtos</a></li>
                     <li><a href="animais.html">Animais</a></li>
                     <li><a href="doacoes.html" class="active">Doações</a></li>
                     <li><a href="#">Sobre Nós</a></li>
@@ -121,6 +120,20 @@
                     </form>
                 </div>
 
+                <!-- Título da seção de produtos para doação -->
+                <div class="section-header">
+                    <h2>Produtos para Doação</h2>
+                    <p>Confira os itens disponíveis para doação ou solicite um item que você precisa.</p>
+                </div>
+
+                <!-- Barra de Pesquisa para Itens de Doação -->
+                <section class="search-section">
+                    <div class="search-container">
+                        <input type="text" id="searchDonationInput" placeholder="Pesquisar itens para doação..." class="search-input">
+                        <button id="searchDonationButton" class="search-button">🔍</button>
+                    </div>
+                </section>
+
                 <div class="donation-items-grid" id="donationItemsGrid">
                     <!-- Os itens para doação serão inseridos aqui pelo JavaScript -->
                 </div>
@@ -180,6 +193,14 @@
                     <h2>Projetos que Apoiamos</h2>
                     <p>Conheça os projetos que estão transformando vidas e preservando o meio ambiente com a ajuda de pessoas como você.</p>
                 </div>
+
+                <!-- Barra de Pesquisa para Projetos -->
+                <section class="search-section">
+                    <div class="search-container">
+                        <input type="text" id="searchProjectInput" placeholder="Pesquisar projetos..." class="search-input">
+                        <button id="searchProjectButton" class="search-button">🔍</button>
+                    </div>
+                </section>
 
                 <div class="project-grid" id="projectGrid">
                     <!-- Os projetos serão inseridos aqui pelo JavaScript -->
@@ -316,6 +337,9 @@
                 this.addProjectForm = document.getElementById('addProjectForm');
                 this.donationForm = document.getElementById('donationForm');
                 this.projectSelect = document.getElementById('selectedProject');
+                this.searchProjectInput = document.getElementById('searchProjectInput');
+                this.searchProjectButton = document.getElementById('searchProjectButton');
+                this.searchTerm = '';
                 
                 // Se não houver projetos salvos, adicionar alguns projetos padrão
                 if (this.projects.length === 0) {
@@ -387,6 +411,24 @@
                     e.preventDefault();
                     this.processDonation();
                 });
+                
+                // Pesquisar projetos
+                this.searchProjectButton.addEventListener('click', () => {
+                    this.searchProjects();
+                });
+                
+                // Pesquisar ao pressionar Enter
+                this.searchProjectInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        this.searchProjects();
+                    }
+                });
+            }
+            
+            searchProjects() {
+                this.searchTerm = this.searchProjectInput.value.toLowerCase().trim();
+                this.renderProjects();
             }
             
             addProject() {
@@ -484,7 +526,19 @@
             renderProjects() {
                 this.projectGrid.innerHTML = '';
                 
-                this.projects.forEach(project => {
+                // Filtrar projetos pelo termo de pesquisa
+                let filteredProjects = this.projects;
+                
+                if (this.searchTerm) {
+                    filteredProjects = filteredProjects.filter(project => {
+                        return (
+                            project.name.toLowerCase().includes(this.searchTerm) ||
+                            project.description.toLowerCase().includes(this.searchTerm)
+                        );
+                    });
+                }
+                
+                filteredProjects.forEach(project => {
                     // Calcular porcentagem arrecadada
                     const percentage = (project.raised / project.goal) * 100;
                     
@@ -518,8 +572,8 @@
                 });
                 
                 // Mensagem se não houver projetos
-                if (this.projects.length === 0) {
-                    this.projectGrid.innerHTML = '<p class="no-items">Nenhum projeto cadastrado. Adicione projetos acima.</p>';
+                if (filteredProjects.length === 0) {
+                    this.projectGrid.innerHTML = '<p class="no-items">Nenhum projeto encontrado. Tente outra pesquisa ou adicione projetos acima.</p>';
                 }
             }
         }
@@ -530,6 +584,9 @@
                 this.items = JSON.parse(localStorage.getItem('albalife_donation_items')) || [];
                 this.itemsGrid = document.getElementById('donationItemsGrid');
                 this.addItemForm = document.getElementById('addDonationItemForm');
+                this.searchDonationInput = document.getElementById('searchDonationInput');
+                this.searchDonationButton = document.getElementById('searchDonationButton');
+                this.searchTerm = '';
                 
                 // Se não houver itens salvos, adicionar alguns itens padrão
                 if (this.items.length === 0) {
@@ -597,6 +654,24 @@
                         this.requestItem(itemId);
                     }
                 });
+                
+                // Pesquisar itens
+                this.searchDonationButton.addEventListener('click', () => {
+                    this.searchItems();
+                });
+                
+                // Pesquisar ao pressionar Enter
+                this.searchDonationInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        this.searchItems();
+                    }
+                });
+            }
+            
+            searchItems() {
+                this.searchTerm = this.searchDonationInput.value.toLowerCase().trim();
+                this.renderItems();
             }
             
             addItem() {
@@ -681,7 +756,25 @@
             renderItems() {
                 this.itemsGrid.innerHTML = '';
                 
-                this.items.forEach(item => {
+                // Filtrar itens pelo termo de pesquisa
+                let filteredItems = this.items;
+                
+                if (this.searchTerm) {
+                    filteredItems = filteredItems.filter(item => {
+                        const categoryName = this.getCategoryName(item.category);
+                        const conditionName = this.getConditionName(item.condition);
+                        
+                        return (
+                            item.name.toLowerCase().includes(this.searchTerm) ||
+                            item.description.toLowerCase().includes(this.searchTerm) ||
+                            categoryName.toLowerCase().includes(this.searchTerm) ||
+                            conditionName.toLowerCase().includes(this.searchTerm) ||
+                            item.contact.toLowerCase().includes(this.searchTerm)
+                        );
+                    });
+                }
+                
+                filteredItems.forEach(item => {
                     const itemCard = document.createElement('div');
                     itemCard.className = 'donation-item-card';
                     
@@ -711,8 +804,8 @@
                 });
                 
                 // Mensagem se não houver itens
-                if (this.items.length === 0) {
-                    this.itemsGrid.innerHTML = '<p class="no-items">Nenhum item para doação cadastrado. Adicione itens acima.</p>';
+                if (filteredItems.length === 0) {
+                    this.itemsGrid.innerHTML = '<p class="no-items">Nenhum item para doação encontrado. Tente outra pesquisa ou adicione itens acima.</p>';
                 }
             }
         }
@@ -836,20 +929,80 @@
             align-items: center;
         }
         
+        /* Estilos para a seção de pesquisa */
+        .search-section {
+            padding: 20px 0;
+            margin-bottom: 20px;
+        }
+        
+        .search-container {
+            display: flex;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 50px;
+            overflow: hidden;
+        }
+        
+        .search-input {
+            flex: 1;
+            padding: 15px 25px;
+            border: none;
+            font-size: 16px;
+            outline: none;
+            border-radius: 50px 0 0 50px;
+        }
+        
+        .search-button {
+            background-color: #2e7d32;
+            color: white;
+            border: none;
+            padding: 0 25px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s;
+            border-radius: 0 50px 50px 0;
+        }
+        
+        .search-button:hover {
+            background-color: #1b5e20;
+        }
+        
         @media (max-width: 768px) {
             .donation-items-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .search-container {
+                width: 90%;
+                margin: 0 auto;
+            }
+            
+            .search-input {
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+            
+            .search-button {
+                padding: 0 20px;
+                font-size: 16px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .search-container {
+                width: 95%;
+            }
+            
+            .search-input {
+                padding: 10px 15px;
+            }
+            
+            .search-button {
+                padding: 0 15px;
             }
         }
     </style>
 
 </body>
 </html>
-
-<Actions>
-  <Action name="Adicionar filtro por categoria" description="Implementar filtros para os itens de doação por categoria" />
-  <Action name="Adicionar sistema de busca" description="Implementar busca para encontrar itens específicos" />
-  <Action name="Melhorar responsividade" description="Otimizar a visualização em dispositivos móveis" />
-  <Action name="Adicionar estatísticas de doações" description="Mostrar estatísticas sobre itens doados e solicitados" />
-  <Action name="Implementar sistema de mensagens" description="Adicionar sistema de mensagens entre doadores e interessados" />
-</Actions>
