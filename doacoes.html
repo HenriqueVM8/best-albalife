@@ -24,8 +24,8 @@
                         <li><a href="index.html">Início</a></li>
                         <li><a href="animais.html">Animais</a></li>
                         <li><a href="doacoes.html" class="active">Doações</a></li>
-                        <li><a href="#">Sobre Nós</a></li>
-                        <li><a href="#">Contato</a></li>
+                        <li><a href="sobre-nos.html">Sobre Nós</a></li>
+                        <li><a href="contato.html">Contato</a></li>
                     </ul>
                 </nav>
                 <button class="mobile-menu-btn" onclick="toggleMenu()">
@@ -41,18 +41,19 @@
                     <li><a href="index.html">Início</a></li>
                     <li><a href="animais.html">Animais</a></li>
                     <li><a href="doacoes.html" class="active">Doações</a></li>
-                    <li><a href="#">Sobre Nós</a></li>
-                    <li><a href="#">Contato</a></li>
+                    <li><a href="sobre-nos.html">Sobre Nós</a></li>
+                    <li><a href="contato.html">Contato</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <main>
-        <!-- Hero Section -->
-        <section class="hero hero-small">
+        <!-- Hero Section com Imagem de Fundo -->
+        <section class="hero hero-donation">
+            <div class="hero-overlay"></div>
             <div class="container">
-                <div class="hero-text text-center">
+                <div class="hero-text-donation">
                     <h1>Faça uma Doação</h1>
                     <p>Sua contribuição ajuda a financiar projetos ambientais e sociais que fazem a diferença em comunidades por todo o país.</p>
                 </div>
@@ -820,6 +821,47 @@
     </script>
 
     <style>
+        /* Estilos para o cabeçalho com imagem de fundo */
+        .hero-donation {
+            position: relative;
+            background-image: url('imagens/doacoes-susten.png');
+            background-size: cover;
+            background-position: center;
+            padding: 160px 0 100px;
+            color: white;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .hero-text-donation {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-text-donation h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-text-donation p {
+            font-size: 18px;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
         /* Estilos para itens de doação */
         .donation-items {
             padding: 80px 0;
@@ -971,6 +1013,14 @@
         }
         
         @media (max-width: 768px) {
+            .hero-text-donation h1 {
+                font-size: 32px;
+            }
+            
+            .hero-text-donation p {
+                font-size: 16px;
+            }
+            
             .donation-items-grid {
                 grid-template-columns: 1fr;
             }
@@ -992,6 +1042,10 @@
         }
         
         @media (max-width: 480px) {
+            .hero-text-donation h1 {
+                font-size: 28px;
+            }
+            
             .search-container {
                 width: 95%;
             }
@@ -1005,6 +1059,5 @@
             }
         }
     </style>
-
 </body>
 </html>

@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Albalife - Sobre Nós</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+
+    <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <!-- Header Fixo -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <img src="imagens/folha-removebg-preview.png" alt="Folha ilustrativa" style="width: 50px;
+                height: 50px;">
+
+                <a href="index.html" class="logo" style="margin-right: auto;">Albalife</a>
+
+                <nav class="desktop-nav">
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="animais.html">Animais</a></li>
+                        <li><a href="doacoes.html">Doações</a></li>
+                        <li><a href="sobre-nos.html" class="active">Sobre Nós</a></li>
+                        <li><a href="contato.html">Contato</a></li>
+                    </ul>
+                </nav>
+                <button class="mobile-menu-btn" onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            
+            <!-- Menu Mobile -->
+            <nav class="mobile-nav" id="mobileNav">
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="animais.html">Animais</a></li>
+                    <li><a href="doacoes.html">Doações</a></li>
+                    <li><a href="sobre-nos.html" class="active">Sobre Nós</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section com Imagem de Fundo -->
+        <section class="hero hero-about">
+            <div class="hero-overlay"></div>
+            <div class="container">
+                <div class="hero-content-about">
+                    <div class="hero-text-about">
+                        <h1>Sobre Nós</h1>
+                        <p>Conheça nossa história, missão e os valores que guiam o Albalife na busca por um mundo mais sustentável.</p>
+                    </div>
+                    <div class="hero-image-about">
+                        <img src="https://placehold.co/600x400/2e7d32/white?text=Equipe+Albalife" alt="Equipe Albalife">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nossa História -->
+        <section class="about-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Nossa História</h2>
+                    <p>Como nasceu o Albalife e nossa jornada até aqui</p>
+                </div>
+
+                <div class="about-content">
+                    <div class="about-image">
+                        <img src="https://placehold.co/600x400/green/white?text=Nossa+História" alt="História do Albalife">
+                    </div>
+                    <div class="about-text">
+                        <h3>Do sonho à realidade</h3>
+                        <p>O Albalife nasceu em 2020, fruto da visão de um grupo de amigos preocupados com o impacto ambiental do consumo desenfreado. Percebemos que muitos produtos ainda em bom estado eram descartados prematuramente, enquanto outras pessoas poderiam dar-lhes uma segunda vida.</p>
+                        <p>Começamos como uma pequena iniciativa local, organizando feiras de troca em nossa comunidade. Com o tempo, o projeto cresceu e se transformou em uma plataforma digital que conecta pessoas interessadas em comprar, vender e doar produtos de forma sustentável.</p>
+                        <p>Hoje, o Albalife é uma comunidade vibrante de pessoas comprometidas com a sustentabilidade, que acreditam que pequenas ações individuais podem gerar um grande impacto coletivo para o planeta.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Missão, Visão e Valores -->
+        <section class="mission-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Missão, Visão e Valores</h2>
+                    <p>Os princípios que norteiam nossas ações</p>
+                </div>
+
+                <div class="mission-grid">
+                    <div class="mission-card">
+                        <div class="mission-icon">🎯</div>
+                        <h3>Missão</h3>
+                        <p>Promover o consumo consciente e sustentável, facilitando a circulação de produtos usados e incentivando práticas que reduzam o impacto ambiental.</p>
+                    </div>
+
+                    <div class="mission-card">
+                        <div class="mission-icon">👁️</div>
+                        <h3>Visão</h3>
+                        <p>Ser reconhecida como a principal plataforma de economia circular em Portugal, inspirando uma mudança cultural em direção a um estilo de vida mais sustentável.</p>
+                    </div>
+
+                    <div class="mission-card">
+                        <div class="mission-icon">💎</div>
+                        <h3>Valores</h3>
+                        <ul class="values-list">
+                            <li><strong>Sustentabilidade:</strong> Comprometimento com práticas ambientalmente responsáveis</li>
+                            <li><strong>Transparência:</strong> Honestidade em todas as nossas ações e comunicações</li>
+                            <li><strong>Comunidade:</strong> Valorização das conexões humanas e do impacto social positivo</li>
+                            <li><strong>Inovação:</strong> Busca constante por soluções criativas para desafios ambientais</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nossa Equipe -->
+        <section class="team-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Nossa Equipe</h2>
+                    <p>Conheça as pessoas por trás do Albalife</p>
+                </div>
+
+                <div class="team-grid">
+                    <div class="team-card">
+                        <div class="team-image">
+                            <img src="https://placehold.co/300x300/green/white?text=Foto" alt="Fundador">
+                        </div>
+                        <h3>João Silva</h3>
+                        <p class="team-role">Fundador & CEO</p>
+                        <p class="team-bio">Apaixonado por sustentabilidade e tecnologia, João fundou o Albalife com a missão de transformar a forma como consumimos.</p>
+                    </div>
+
+                    <div class="team-card">
+                        <div class="team-image">
+                            <img src="https://placehold.co/300x300/green/white?text=Foto" alt="Diretora de Operações">
+                        </div>
+                        <h3>Maria Santos</h3>
+                        <p class="team-role">Diretora de Operações</p>
+                        <p class="team-bio">Com vasta experiência em logística sustentável, Maria garante que todas as operações do Albalife sejam eficientes e ecológicas.</p>
+                    </div>
+
+                    <div class="team-card">
+                        <div class="team-image">
+                            <img src="https://placehold.co/300x300/green/white?text=Foto" alt="Diretor de Tecnologia">
+                        </div>
+                        <h3>Pedro Costa</h3>
+                        <p class="team-role">Diretor de Tecnologia</p>
+                        <p class="team-bio">Especialista em desenvolvimento web, Pedro lidera a equipe técnica responsável pela plataforma digital do Albalife.</p>
+                    </div>
+
+                    <div class="team-card">
+                        <div class="team-image">
+                            <img src="https://placehold.co/300x300/green/white?text=Foto" alt="Coordenadora de Projetos Sociais">
+                        </div>
+                        <h3>Ana Oliveira</h3>
+                        <p class="team-role">Coordenadora de Projetos Sociais</p>
+                        <p class="team-bio">Dedicada a causas sociais, Ana desenvolve e gerencia os projetos de impacto comunitário do Albalife.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Impacto Ambiental -->
+        <section class="impact-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Nosso Impacto</h2>
+                    <p>Os resultados que alcançamos juntos</p>
+                </div>
+
+                <div class="impact-stats">
+                    <div class="stat-card">
+                        <div class="stat-value">5.000+</div>
+                        <p>Produtos reutilizados</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-value">10 ton</div>
+                        <p>Resíduos evitados</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-value">15+</div>
+                        <p>Projetos sociais apoiados</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-value">3.000+</div>
+                        <p>Membros na comunidade</p>
+                    </div>
+                </div>
+
+                <div class="impact-description">
+                    <p>Cada produto que ganha uma segunda vida através do Albalife representa menos resíduos em aterros, menos recursos naturais extraídos e menos emissões de carbono. Além disso, parte dos nossos lucros é direcionada para projetos sociais e ambientais, multiplicando nosso impacto positivo.</p>
+                    <p>Estamos orgulhosos do que já alcançamos, mas sabemos que ainda há muito a ser feito. Com o apoio da nossa comunidade, continuamos trabalhando para criar um futuro mais sustentável para todos.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Parceiros -->
+        <section class="partners-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Nossos Parceiros</h2>
+                    <p>Organizações que caminham conosco</p>
+                </div>
+
+                <div class="partners-grid">
+                    <div class="partner-logo">
+                        <img src="https://placehold.co/200x100/green/white?text=Parceiro" alt="Logo Parceiro">
+                    </div>
+                    <div class="partner-logo">
+                        <img src="https://placehold.co/200x100/green/white?text=Parceiro" alt="Logo Parceiro">
+                    </div>
+                    <div class="partner-logo">
+                        <img src="https://placehold.co/200x100/green/white?text=Parceiro" alt="Logo Parceiro">
+                    </div>
+                    <div class="partner-logo">
+                        <img src="https://placehold.co/200x100/green/white?text=Parceiro" alt="Logo Parceiro">
+                    </div>
+                    <div class="partner-logo">
+                        <img src="https://placehold.co/200x100/green/white?text=Parceiro" alt="Logo Parceiro">
+                    </div>
+                    <div class="partner-logo">
+                        <img src="https://placehold.co/200x100/green/white?text=Parceiro" alt="Logo Parceiro">
+                    </div>
+                </div>
+
+                <div class="text-center" style="margin-top: 40px;">
+                    <a href="contato.html" class="btn btn-primary">Torne-se um Parceiro</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="cta">
+            <div class="container">
+                <h2>Junte-se à Nossa Missão</h2>
+                <p>Faça parte da comunidade Albalife e ajude a construir um futuro mais sustentável.</p>
+                <div class="cta-buttons">
+                    <a href="index.html#produtos" class="btn btn-white">Explorar Produtos</a>
+                    <a href="contato.html" class="btn btn-outline-white">Entre em Contato</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; <span id="currentYear"></span> Albalife. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Funções de navegação
+        function toggleMenu() {
+            const mobileNav = document.getElementById('mobileNav');
+            mobileNav.classList.toggle('active');
+        }
+
+        // Fechar menu ao clicar em um link
+        document.querySelectorAll('.mobile-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobileNav').classList.remove('active');
+            });
+        });
+
+        // Atualizar ano no footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+
+    <style>
+        /* Estilos específicos para a página Sobre Nós */
+        .hero-about {
+            position: relative;
+            background-image: url('imagens/background.png');
+            background-size: cover;
+            background-position: center;
+            padding: 160px 0 100px;
+            color: white;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .hero-content-about {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .hero-text-about {
+            flex: 1;
+        }
+
+        .hero-text-about h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-text-about p {
+            font-size: 18px;
+            max-width: 600px;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-image-about {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-image-about img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 5px solid white;
+        }
+
+        .about-section, .mission-section, .team-section, .impact-section, .partners-section {
+            padding: 80px 0;
+        }
+
+        .about-section, .team-section, .partners-section {
+            background-color: #f5f5f5;
+        }
+
+        .mission-section, .impact-section {
+            background-color: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-text h3 {
+            color: #2e7d32;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .about-text p {
+            margin-bottom: 16px;
+            color: #555;
+        }
+
+        .mission-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .mission-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .mission-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .mission-icon {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .mission-card h3 {
+            color: #2e7d32;
+            margin-bottom: 16px;
+            font-size: 20px;
+        }
+
+        .values-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .values-list li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .values-list li:before {
+            content: "•";
+            color: #2e7d32;
+            position: absolute;
+            left: 0;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .team-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+            padding-bottom: 20px;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-image {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .team-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .team-card h3 {
+            color: #2e7d32;
+            margin: 16px 0 5px;
+            padding: 0 15px;
+        }
+
+        .team-role {
+            color: #666;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .team-bio {
+            color: #555;
+            padding: 0 15px;
+            font-size: 14px;
+        }
+
+        .impact-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background-color: #e8f5e9;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-value {
+            font-size: 36px;
+            font-weight: 700;
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+
+        .impact-description {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            color: #555;
+        }
+
+        .impact-description p {
+            margin-bottom: 16px;
+        }
+
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 30px;
+            align-items: center;
+        }
+
+        .partner-logo {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s;
+        }
+
+        .partner-logo:hover {
+            transform: translateY(-5px);
+        }
+
+        .partner-logo img {
+            max-width: 100%;
+            max-height: 80px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content-about {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-text-about {
+                margin-bottom: 30px;
+            }
+
+            .hero-text-about p {
+                margin: 0 auto 20px;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .mission-grid, .team-grid, .impact-stats, .partners-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</body>
+</html>
