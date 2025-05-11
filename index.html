@@ -49,20 +49,16 @@
     </header>
 
     <main>
-        <!-- Hero Section -->
-        <section class="hero">
+        <!-- Hero Section com Imagem de Fundo -->
+        <section class="hero hero-index">
+            <div class="hero-overlay"></div>
             <div class="container">
-                <div class="hero-content">
-                    <div class="hero-text">
-                        <h1>Produtos de segunda vida para um Futuro Sustentável</h1>
-                        <p>Descubra produtos sustentáveis que ajudam a preservar o meio ambiente.</p>
-                        <div class="hero-buttons">
-                            <a href="#produtos" class="btn btn-white">Ver Produtos</a>
-                            <a href="doacoes.html" class="btn btn-outline">Fazer Doação</a>
-                        </div>
-                    </div>
-                    <div class="hero-image">
-                        <img src="imagens/Teste.png" alt="Produtos Ecológicos">
+                <div class="hero-text-index">
+                    <h1>Produtos de segunda vida para um Futuro Sustentável</h1>
+                    <p>Descubra produtos sustentáveis que ajudam a preservar o meio ambiente.</p>
+                    <div class="hero-buttons">
+                        <a href="#produtos" class="btn btn-white">Ver Produtos</a>
+                        <a href="doacoes.html" class="btn btn-outline">Fazer Doação</a>
                     </div>
                 </div>
             </div>
@@ -442,6 +438,54 @@
     </script>
 
     <style>
+        /* Estilos para o cabeçalho com imagem de fundo */
+        .hero-index {
+            position: relative;
+            background-image: url('imagens/backlixo.png');
+            background-size: cover;
+            background-position: center;
+            padding: 160px 0 100px;
+            color: white;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.600);
+            z-index: 1;
+        }
+
+        .hero-text-index {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-text-index h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-text-index p {
+            font-size: 18px;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+
+        .hero-text-index .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
         /* Estilos para as categorias */
         .categories {
             padding: 80px 0;
@@ -554,6 +598,15 @@
         }
         
         @media (max-width: 768px) {
+            .hero-text-index h1 {
+                font-size: 32px;
+            }
+            
+            .hero-text-index p {
+                font-size: 16px;
+                margin-bottom: 24px;
+            }
+            
             .categories-grid {
                 grid-template-columns: 1fr;
             }
@@ -575,6 +628,10 @@
         }
         
         @media (max-width: 480px) {
+            .hero-text-index h1 {
+                font-size: 28px;
+            }
+            
             .search-container {
                 width: 95%;
 

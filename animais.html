@@ -49,23 +49,18 @@
     </header>
 
     <main>
-        <!-- Hero Section -->
-        <section class="hero">
+        <!-- Hero Section com Imagem de Fundo -->
+        <section class="hero hero-animal">
+            <div class="hero-overlay"></div>
             <div class="container">
-                <div class="hero-content">
-                    <div class="hero-text">
-                        <h1>Produtos para Animais</h1>
-                        <p>Cuide do seu pet com produtos acessíveis que respeitam o meio ambiente e a saúde animal.</p>
-                        <div class="hero-buttons">
-                            <a href="#produtos-animais" class="btn btn-white">Ver Produtos</a>
-                            <a href="doacoes.html" class="btn btn-outline">Apoiar Causas</a>
-                        </div>
-                    </div>
-                    <div class="hero-image">
-                        <img src="imagens/cachorro.png" alt="Produtos para Animais">
+                <div class="hero-text-animal">
+                    <h1>Produtos para Animais</h1>
+                    <p>Cuide do seu pet com produtos acessíveis que respeitam o meio ambiente e a saúde animal.</p>
+                    <div class="hero-buttons">
+                        <a href="#produtos-animais" class="btn btn-white">Ver Produtos</a>
+                        <a href="doacoes.html" class="btn btn-outline">Apoiar Causas</a>
                     </div>
                 </div>
-
             </div>
         </section>
 
@@ -525,6 +520,54 @@
     </script>
 
     <style>
+        /* Estilos para o cabeçalho com imagem de fundo */
+        .hero-animal {
+            position: relative;
+            background-image: url('imagens/backcachorro.png');
+            background-size: cover;
+            background-position: center;
+            padding: 160px 0 100px;
+            color: white;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.600);
+            z-index: 1;
+        }
+
+        .hero-text-animal {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-text-animal h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-text-animal p {
+            font-size: 18px;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+
+        .hero-text-animal .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
         /* Estilos específicos para a página de animais */
         .category-filter {
             display: flex;
@@ -682,6 +725,15 @@
         }
         
         @media (max-width: 768px) {
+            .hero-text-animal h1 {
+                font-size: 32px;
+            }
+            
+            .hero-text-animal p {
+                font-size: 16px;
+                margin-bottom: 24px;
+            }
+            
             .category-filter {
                 flex-direction: row;
                 overflow-x: auto;
@@ -710,6 +762,10 @@
         }
         
         @media (max-width: 480px) {
+            .hero-text-animal h1 {
+                font-size: 28px;
+            }
+            
             .search-container {
                 width: 95%;
             }
